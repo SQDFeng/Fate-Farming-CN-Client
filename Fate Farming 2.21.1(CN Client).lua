@@ -250,7 +250,7 @@ ClassList =
 BicolorExchangeData =
 {
     {
-        shopKeepName = "加德弗里德",
+        shopKeepName = "广域交易商 加德弗里德",
         zoneName = "旧萨雷安",
         zoneId = 962,
         aetheryteName = "旧萨雷安",
@@ -261,13 +261,13 @@ BicolorExchangeData =
         }
     },
     {
-        shopKeepName = "贝瑞尔",
+        shopKeepName = "广域交易商 贝瑞尔",
         zoneName = "九号解决方案",
         zoneId = 1186,
         aetheryteName = "九号解决方案",
         x=-198.47, y=0.92, z=-6.95,
         miniAethernet = {
-            name = "Nexus Arcade",
+            name = "联合商城",
             x=-157.74, y=0.29, z=17.43
         },
         shopItems =
@@ -1954,7 +1954,7 @@ function DoFate()
         yield("/wait 1")
         return
     elseif IsInFate() and (GetFateMaxLevel(CurrentFate.fateId) < GetLevel()) and not IsLevelSynced() then
-        yield("/lsync")
+        yield("/levelsync")
         yield("/wait 0.5") -- give it a second to register
     elseif IsFateActive(CurrentFate.fateId) and not IsInFate() and GetFateProgress(CurrentFate.fateId) < 100 and
         (GetDistanceToPoint(CurrentFate.x, CurrentFate.y, CurrentFate.z) < GetFateRadius(CurrentFate.fateId) + 10) and
