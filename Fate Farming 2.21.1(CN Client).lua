@@ -1301,7 +1301,7 @@ function FlyBackToAetheryte()
             State = CharacterState.ready
             LogInfo("[FATE] State Change: Ready")
         else
-            if MountToUse == "/gaction 随机飞行坐骑" then
+            if MountToUse == "随机飞行坐骑" then
                 yield("/gaction 随机飞行坐骑")
             else
                 yield('/mount "' .. MountToUse)
@@ -1337,7 +1337,7 @@ function Mount()
             yield("/gaction 跳跃")
         end
     else
-        if MountToUse == "/gaction 随机飞行坐骑" then
+        if MountToUse == "随机飞行坐骑" then
             yield("/gaction 随机飞行坐骑")
         else
             yield('/mount "' .. MountToUse)
