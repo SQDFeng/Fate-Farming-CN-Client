@@ -272,8 +272,8 @@ BicolorExchangeData =
         },
         shopItems =
         {
-            { itemName = "图拉尔双色宝石的收据", itemIndex = 6, price = 100 },
-            { itemName = "犎牛肩肉", itemIndex = 9, price = 3 }
+            { itemName = "图拉尔双色宝石的收据", itemIndex = 5, price = 100 },
+      --    { itemName = "犎牛肩肉", itemIndex = 9, price = 3 }
         }
     }
 }
@@ -1372,7 +1372,7 @@ function Dismount()
             LastStuckCheckPosition = {x=x, y=y, z=z}
         end
     elseif GetCharacterCondition(CharacterCondition.mounted) then
-        yield('/ac mount')
+        yield('/mount')
     end
 end
 
