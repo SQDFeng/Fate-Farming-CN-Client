@@ -96,8 +96,8 @@ IgnoreForlorns                      = false
     IgnoreBigForlornOnly            = false
 
 --Post Fate Settings
-WaitUpTo                            = 10            --完成Fate任务后，等待开始下一个任务的最大秒数。
-                                                        --实际等待时间将在3秒到该值之间随机生成。
+WaitUpTo                            = 5            --完成Fate任务后，等待开始下一个任务的最大秒数。
+                                                        --实际等待时间将在1秒到该值之间随机生成（1899行）。
 EnableChangeInstance                = true          --没有Fate时是否切换副本（只作用于DT类型的Fate）。
     WaitIfBonusBuff                 = true          --如果你有"危命奖励提高"buff，则不切换副本区。
     NumberOfInstances               = 2
@@ -1896,7 +1896,7 @@ function HandleUnexpectedCombat()
         TurnOffCombatMods()
         State = CharacterState.ready
         LogInfo("[FATE] State Change: Ready")
-        local randomWait = (math.floor(math.random()*WaitUpTo * 1000)/1000) + 3 -- truncated to 3 decimal places
+        local randomWait = (math.floor(math.random()*WaitUpTo * 1000)/1000) + 1 -- truncated to 3 decimal places
         yield("/wait "..randomWait)
         return
     end
