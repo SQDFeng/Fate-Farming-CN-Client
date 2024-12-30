@@ -71,7 +71,7 @@ ShouldSummonChocobo                 = true          --是否召唤陆行鸟？
     ResummonChocoboTimeLeft         = 3 * 60        --如果陆行鸟计时器剩余时间少于此值，将重新召唤，以避免在Fate任务中途消失。
     ChocoboStance                   = "自由战术"      --鸟战斗选项：跟随/自由战术/防护战术/防御战术/攻击战术
     ShouldAutoBuyGysahlGreens       = true          --如果背包里没有基萨尔野菜，则在海都自动购买99个基萨尔野菜。
-MountToUse                          = "/gaction 随机飞行坐骑"       --在Fate任务间飞行时使用的坐骑。
+MountToUse                          = "随机飞行坐骑"       --在Fate任务间飞行时使用的坐骑。
 
 --Fate Combat Settings
 CompletionToIgnoreFate              = 80            --如果Fate任务的进度超过该值，则跳过。
