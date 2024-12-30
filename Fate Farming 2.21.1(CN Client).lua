@@ -51,7 +51,7 @@ This Plugins are Optional and not needed unless you have it enabled in the setti
 
     -> AutoRetainer : (for Retainers [Retainers])   https://love.puni.sh/ment.json
     -> Deliveroo : (对于gc turn in [TurnIn])   https://plugins.carvel.li/
-    -> YesAlready : (for extracting materia)
+    -> YesAlready : (for extracting materia)   YesNo处添加 要帮忙吗？ 并选择yes
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 ]]
@@ -273,7 +273,7 @@ BicolorExchangeData =
         shopItems =
         {
             { itemName = "图拉尔双色宝石的收据", itemIndex = 5, price = 100 },
-      --    { itemName = "犎牛肩肉", itemIndex = 9, price = 3 }
+      --    { itemName = "犎牛肩肉", itemIndex = 8, price = 3 }
         }
     }
 }
@@ -664,6 +664,7 @@ FatesData = {
             fatesWithContinuations = {},
             blacklistedFates= {
                 "横征暴敛？",
+				"密林之王——帕玛亚瓦",
                 "美丽菇世界" -- multiple Pelupelu Peddlers
             }
         }
