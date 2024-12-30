@@ -70,7 +70,7 @@ Potion                              = ""            --如果不想使用任何�
 ShouldSummonChocobo                 = true          --是否召唤陆行鸟？
     ResummonChocoboTimeLeft         = 3 * 60        --如果陆行鸟计时器剩余时间少于此值，将重新召唤，以避免在Fate任务中途消失。
     ChocoboStance                   = "自由战术"      --鸟战斗选项：跟随/自由战术/防护战术/防御战术/攻击战术
-    ShouldAutoBuyGysahlGreens       = true          --如果背包里没有基萨尔野菜，则在海都自动购买99个基萨尔野菜。
+    ShouldAutoBuyGysahlGreens       = false          --如果背包里没有基萨尔野菜，则在海都自动购买99个基萨尔野菜。
 MountToUse                          = "随机飞行坐骑"       --在Fate任务间飞行时使用的坐骑。
 
 --Fate Combat Settings
@@ -79,7 +79,7 @@ MinTimeLeftToIgnoreFate             = 3*60          --如果Fate任务计时器�
 CompletionToJoinBossFate            = 0             --如果BossFate任务进度小于该值，则跳过（用于避免单独挑战Boss）。
     CompletionToJoinSpecialBossFates = 20           --用于特殊Fate任务，例如蛇王得酷热涅：荒野的死斗或亩鼠米卡：盛装巡游皆大欢喜。
     ClassForBossFates               = ""            --如果想使用不同的职业进行boss Fate，设置为该职业的三字母缩写，例如 "PLD"
-JoinCollectionsFates                = true          --如果不想做收藏类Fate任务，请设置为false。
+JoinCollectionsFates                = false          --如果不想做收藏类Fate任务，请设置为false。
 
 MeleeDist                           = 2.5           --近战攻击距离。近战攻击（自动攻击）的最大距离为2.59y，2.60为 "目标超出范围"。
 RangedDist                          = 20            --远程攻击距离。远程攻击和法术的最大可用距离为25.49y，25.5为 "目标超出范围"。
