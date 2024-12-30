@@ -36,7 +36,7 @@ Plugins that are needed for it to work:
         -> BossMod Reborn: https://raw.githubusercontent.com/FFXIV-CombatReborn/CombatRebornRepo/main/pluginmaster.json
         -> Veyn's BossMod: https://puni.sh/api/repository/veyn
         -> Wrath Combo: https://love.puni.sh/ment.json
-    -> Some form of AI dodging. Options are: 
+    -> Some form of AI . Options are: 
         -> BossMod Reborn: https://raw.githubusercontent.com/FFXIV-CombatReborn/CombatRebornRepo/main/pluginmaster.json
         -> Veyn's BossMod: https://puni.sh/api/repository/veyn
     -> TextAdvance: (用来和fate里的NPC互动)
@@ -1372,7 +1372,7 @@ function Dismount()
             LastStuckCheckPosition = {x=x, y=y, z=z}
         end
     elseif GetCharacterCondition(CharacterCondition.mounted) then
-        yield('/ac dismount')
+        yield('/ac mount')
     end
 end
 
