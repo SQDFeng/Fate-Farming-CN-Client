@@ -19,7 +19,7 @@ State Machine Diagram: https://github.com/pot0to/pot0to-SND-Scripts/blob/main/Fa
 				新增了如果离收集任务NPC太远时，自动走向任务中心的功能
 				添加了反机器人检测的改动：
 				    - 略微平滑的下马动作（实际上差别不大）
-				    - 添加了防止vnav打断施法者的检查
+					- 添加了防止vnav打断施法者的检查
 				    - 在战斗中关闭vnav路径规划
 
 
@@ -69,7 +69,7 @@ Food                                = ""            --如果不想使用任何�
 Potion                              = ""            --如果不想使用任何药水，请保留为空白。
 ShouldSummonChocobo                 = true          --是否召唤陆行鸟？
     ResummonChocoboTimeLeft         = 3 * 60        --如果陆行鸟计时器剩余时间少于此值，将重新召唤，以避免在Fate任务中途消失。
-    ChocoboStance                   = "Free"      --鸟战斗选项：Follow/Free/Defender/Healer/Attacker
+    ChocoboStance                   = "自由战术"      --鸟战斗选项：跟随/自由战术/防护战术/防御战术/攻击战术
     ShouldAutoBuyGysahlGreens       = true          --如果背包里没有基萨尔野菜，则在海都自动购买99个基萨尔野菜。
 MountToUse                          = "/gaction 随机飞行坐骑"       --在Fate任务间飞行时使用的坐骑。
 
@@ -1692,7 +1692,7 @@ function SummonChocobo()
         if GetItemCount(4868) > 0 then
             yield("/item 基萨尔野菜")
             yield("/wait 3")
-            yield('/cac "'..ChocoboStance..' stance"')
+            yield('/cac '..ChocoboStance)
         elseif ShouldAutoBuyGysahlGreens then
             State = CharacterState.autoBuyGysahlGreens
             LogInfo("[FATE] State Change: AutoBuyGysahlGreens")
@@ -2627,7 +2627,7 @@ if IsInFate() and GetFateProgress(GetNearestFate()) < 100 then
 end
 
 if ShouldSummonChocobo and GetBuddyTimeRemaining() > 0 then
-    yield('/cac "'..ChocoboStance..' stance"')
+    yield('/cac '..ChocoboStance)
 end
 
 while not StopScript do
