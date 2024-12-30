@@ -1202,9 +1202,9 @@ function ChangeInstance()
         return
     end
 
-    if GetDistanceToTarget() > 10 then
-        LogInfo("[FATE] Targeting aetheryte, but greater than 10 distance")
-        if GetDistanceToTarget() > 20 and not GetCharacterCondition(CharacterCondition.mounted) then
+    if GetDistanceToTarget() > 5 then   --距离fate距离？
+        LogInfo("[FATE] Targeting aetheryte, but greater than 5 distance")
+        if GetDistanceToTarget() > 10 and not GetCharacterCondition(CharacterCondition.mounted) then
             State = CharacterState.mounting
             LogInfo("[FATE] State Change: Mounting")
         elseif not (PathfindInProgress() or PathIsRunning()) then
@@ -1213,7 +1213,7 @@ function ChangeInstance()
         return
     end
 
-    LogInfo("[FATE] Within 10 distance")
+    LogInfo("[FATE] Within 5 distance")
     if PathfindInProgress() or PathIsRunning() then
         yield("/vnav stop")
         return
