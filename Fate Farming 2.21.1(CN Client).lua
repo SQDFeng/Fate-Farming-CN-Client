@@ -1202,9 +1202,9 @@ function ChangeInstance()
         return
     end
 
-    if GetDistanceToTarget() > 5 then   --距离fate距离？
-        LogInfo("[FATE] Targeting aetheryte, but greater than 5 distance")
-        if GetDistanceToTarget() > 10 and not GetCharacterCondition(CharacterCondition.mounted) then
+    if GetDistanceToTarget() > 10 then   
+        LogInfo("[FATE] Targeting aetheryte, but greater than 10 distance")
+        if GetDistanceToTarget() > 20 and not GetCharacterCondition(CharacterCondition.mounted) then
             State = CharacterState.mounting
             LogInfo("[FATE] State Change: Mounting")
         elseif not (PathfindInProgress() or PathIsRunning()) then
@@ -1213,7 +1213,7 @@ function ChangeInstance()
         return
     end
 
-    LogInfo("[FATE] Within 5 distance")
+    LogInfo("[FATE] Within 10 distance") 
     if PathfindInProgress() or PathIsRunning() then
         yield("/vnav stop")
         return
@@ -1291,7 +1291,7 @@ function FlyBackToAetheryte()
 
     yield("/target 以太之光")
 
-    if HasTarget() and GetTargetName() == "aetheryte" and DistanceBetween(GetTargetRawXPos(), y, GetTargetRawZPos(), x, y, z) <= 20 then
+    if HasTarget() and GetTargetName() == "以太之光" and DistanceBetween(GetTargetRawXPos(), y, GetTargetRawZPos(), x, y, z) <= 20 then
         if PathfindInProgress() or PathIsRunning() then
             yield("/vnav stop")
         end
@@ -1386,7 +1386,7 @@ function MiddleOfFateDismount()
     end
 
     if HasTarget() then
-        if DistanceBetween(GetPlayerRawXPos(), 0, GetPlayerRawZPos(), GetTargetRawXPos(), 0, GetTargetRawZPos()) > (MaxDistance + GetTargetHitboxRadius() + 5) then
+        if DistanceBetween(GetPlayerRawXPos(), 0, GetPlayerRawZPos(), GetTargetRawXPos(), 0, GetTargetRawZPos()) > (MaxDistance + GetTargetHitboxRadius() + 1) then --fate距离？
             if not (PathfindInProgress() or PathIsRunning()) then
                 LogInfo("[FATE] MiddleOfFateDismount PathfindAndMoveTo")
                 PathfindAndMoveTo(GetTargetRawXPos(), GetTargetRawYPos(), GetTargetRawZPos(), GetCharacterCondition(CharacterCondition.flying))
@@ -2017,8 +2017,8 @@ function DoFate()
         end
     end
 
-    if (GetTargetName() == "迷失者" or GetTargetName() == "The Forlorn") then
-        if IgnoreForlorns or (IgnoreBigForlornOnly and GetTargetName() == "迷失少女") then
+    if (GetTargetName() == "迷失少女" or GetTargetName() == "迷失者") then
+        if IgnoreForlorns or (IgnoreBigForlornOnly and GetTargetName() == "迷失者") then
             ClearTarget()
         elseif GetTargetHP() > 0 then
             if not ForlornMarked then
