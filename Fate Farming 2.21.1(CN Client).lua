@@ -2023,7 +2023,7 @@ function DoFate()
             ClearTarget()
         elseif GetTargetHP() > 0 then
             if not ForlornMarked then
-                yield("/enemysign attack1")
+                yield("/marking attack1")
                 if Echo == "All" then
                     yield("/echo 发现迷失者! <se.3>")
                 end
