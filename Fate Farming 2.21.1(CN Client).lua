@@ -649,8 +649,8 @@ FatesData = {
         zoneId=1188,
         fatesList={
             collectionsFates={
-                fatesList={},
-                collectionsFates={},
+                { fateName="密林淘金", npcName="莫布林族采集者" },
+                { fateName="巧若天工", npcName="哈努族手艺人" },
                 
             },
             otherNpcFates= {
