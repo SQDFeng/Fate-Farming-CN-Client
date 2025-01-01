@@ -664,6 +664,7 @@ FatesData = {
             fatesWithContinuations = {},
             blacklistedFates= {
                 "横征暴敛？",
+				"通往天罚的阶梯",
 				"密林之王——帕玛亚瓦",
                 "美丽菇世界" -- multiple Pelupelu Peddlers
             }
