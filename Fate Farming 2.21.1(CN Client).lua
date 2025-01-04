@@ -52,6 +52,7 @@ This Plugins are Optional and not needed unless you have it enabled in the setti
     -> AutoRetainer : (for Retainers [Retainers])   https://love.puni.sh/ment.json
     -> Deliveroo : (对于gc turn in [TurnIn])   https://plugins.carvel.li/
     -> YesAlready : (for extracting materia)   YesNo处添加 要帮忙吗？ 并选择yes
+    -> questionable : 不知道为什么，反正还是装了
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 ]]
@@ -664,7 +665,6 @@ FatesData = {
             fatesWithContinuations = {},
             blacklistedFates= {
                 "横征暴敛？",
-				"通往天罚的阶梯",
 				"密林之王——帕玛亚瓦",
                 "美丽菇世界" -- multiple Pelupelu Peddlers
             }
