@@ -1,7 +1,7 @@
 # Fate Farming (CN Client)
 原作者库：https://github.com/pot0to/pot0to-SND-Scripts
 
-鸣谢鳕鱼佬，包租公提供动力
+鸣谢鳕鱼大王，包租公提供动力
 
 Fate Farming的部分功能：
 - 双色宝石达到上限时自动购买双色宝石收据（新的旧的都可以）
