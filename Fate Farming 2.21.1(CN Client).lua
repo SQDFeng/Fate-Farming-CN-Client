@@ -2,26 +2,27 @@
 
 ********************************************************************************
 *                                Fate Farming                                  *
-*                               Version 2.21.1                                 *
+*                               Version 2.21.3                                 *
 ********************************************************************************
 
 Created by: pot0to (https://ko-fi.com/pot0to)
 State Machine Diagram: https://github.com/pot0to/pot0to-SND-Scripts/blob/main/FateFarmingStateMachine.drawio.png
         
-    -> 2.21.1   2.21.1   调整了旧萨雷安双色宝石商人的坐标
-				支持多区域采集
-				新增了一些萨纳兰地区的NPCFate任务
-				清理了亚克特尔树海Fate任务和飞回传送水晶时的着陆条件
-				新增飞行时返回传送水晶的高度限制检查
-				重新设计了双色宝石交换
-				为双色宝石商人添加了检查和调试
-				修复了外海拉诺西亚和南坦纳兰的飞行禁令
-				新增了如果离收集任务NPC太远时，自动走向任务中心的功能
-				添加了反机器人检测的改动：
-				    - 略微平滑的下马动作（实际上差别不大）
-					- 添加了防止vnav打断施法者的检查
-				    - 在战斗中关闭vnav路径规划
-
+    -> 2.21.3   调整了着陆逻辑，希望以后不会再卡在太高的地方
+				增加了只执行 奖励 Fate 的功能
+				调整了旧萨雷安双色宝石商人的坐标
+				支持多区域刷 Fate
+				增加了一些萨纳兰的 NPC Fate
+				清理了 树海 Fate 和飞回传送阵时的着陆条件
+				增加了飞回传送阵时的高度限制检查
+				重新设计了双色兑换
+				增加了双色宝石商店老板的检查和调试功能
+				修复了外海拉诺西亚和南萨纳兰的飞行禁区问题
+				添加了当你距离 收集类 Fate NPC 太远时，走向 Fate 中心的功能
+				添加了反机器人措施：
+				/略微/ 更平滑的下马动作（其实变化不大）
+				增加了检查，防止虚拟导航中断施法者
+				在战斗中关闭了 Boss Fate 的虚拟导航路径
 
 ********************************************************************************
 *                               Required Plugins                               *
@@ -72,7 +73,7 @@ ShouldSummonChocobo                 = true          --是否召唤陆行鸟？
     ResummonChocoboTimeLeft         = 3 * 60        --如果陆行鸟计时器剩余时间少于此值，将重新召唤，以避免在Fate任务中途消失。
     ChocoboStance                   = "自由战术"      --鸟战斗选项：跟随/自由战术/防护战术/防御战术/攻击战术
     ShouldAutoBuyGysahlGreens       = false          --如果背包里没有基萨尔野菜，则在海都自动购买99个基萨尔野菜。
-MountToUse                          = "随机飞行坐骑"       --在Fate任务间飞行时使用的坐骑。
+MountToUse                          = "随机飞行坐骑"       --在Fate任务间飞行时使用的坐骑
 
 --Fate Combat Settings
 CompletionToIgnoreFate              = 80            --如果Fate任务的进度超过该值，则跳过。
@@ -81,6 +82,7 @@ CompletionToJoinBossFate            = 0             --如果BossFate任务进度
     CompletionToJoinSpecialBossFates = 20           --用于特殊Fate任务，例如蛇王得酷热涅：荒野的死斗或亩鼠米卡：盛装巡游皆大欢喜。
     ClassForBossFates               = ""            --如果想使用不同的职业进行boss Fate，设置为该职业的三字母缩写，例如 "PLD"
 JoinCollectionsFates                = false          --如果不想做收藏类Fate任务，请设置为false。
+BonusFatesOnly                      = false         --如果是true，则只做奖励fate（作者愿意帮忙真是太棒啦！）
 
 MeleeDist                           = 2.5           --近战攻击距离。近战攻击（自动攻击）的最大距离为2.59y，2.60为 "目标超出范围"。
 RangedDist                          = 20            --远程攻击距离。远程攻击和法术的最大可用距离为25.49y，25.5为 "目标超出范围"。
@@ -91,6 +93,8 @@ RotationPlugin                      = "RSR"         --选项：RSR/BMR/VBM/Wrath
     -- 仅适用于 BMR/VBM
     RotationSingleTargetPreset      = ""            --单目标模式的预设名称。
     RotationAoePreset               = ""            --仅适用于BMR/VBM。群体模式的预设名称（用于forlorns）。
+    RotationHoldBuffPreset          = ""            --如果进度还剩2分钟则开爆发
+    PorcentageToHoldBuff            = 65            --理想情况下，您应该充分利用您的增益效果。如果进度过快，超过70%仍然会浪费几秒钟
 DodgingPlugin                       = "BMR"         --选项：BMR/VBM/None。如果RotationPlugin为BMR/VBM，则此选项将被覆盖。
 
 IgnoreForlorns                      = false
@@ -116,7 +120,6 @@ Echo                                = "All"         --选项：All/Gems/None
 
 CompanionScriptMode                 = false         --如果使用伴侣脚本（如Atma Farmer），请设置为true。
 
-
 --#endregion Settings
 
 --[[
@@ -141,7 +144,7 @@ end
 
 if EnableChangeInstance == true  then
     if HasPlugin("Lifestream") == false then
-        yield("/echo [FATE] 请在设置中安装Lifestream或禁用ChangeInstance")
+        yield("/echo [FATE] 请在设置中安装Lifestream 或禁用ChangeInstance in the settings")
     end
 end
 if Retainers then
@@ -364,6 +367,9 @@ FatesData = {
             collectionsFates= {},
             otherNpcFates= {},
             fatesWithContinuations = {},
+							
+													   
+			  
             blacklistedFates= {}
         }
     },
@@ -414,6 +420,9 @@ FatesData = {
             collectionsFates= {},
             otherNpcFates= {},
             fatesWithContinuations = {},
+							
+																 
+			  
             blacklistedFates= {}
         }
     },
@@ -665,7 +674,6 @@ FatesData = {
             fatesWithContinuations = {},
             blacklistedFates= {
                 "横征暴敛？",
-				"密林之王——帕玛亚瓦",
                 "美丽菇世界" -- multiple Pelupelu Peddlers
             }
         }
@@ -897,6 +905,17 @@ end
     Given two fates, picks the better one based on priority progress -> is bonus -> time left -> distance
 ]]
 function SelectNextFateHelper(tempFate, nextFate)
+    if BonusFatesOnly then
+        if not tempFate.isBonusFate and nextFate ~= nil and nextFate.isBonusFate then
+            return nextFate
+        elseif tempFate.isBonusFate and (nextFate == nil or not nextFate.isBonusFate) then
+            return tempFate
+        elseif not tempFate.isBonusFate and (nextFate == nil or not nextFate.isBonusFate) then
+            return nil
+        end
+        -- 如果两个都是 奖励 Fate，则按照常规的 Fate 选择过程进行
+    end
+
     if tempFate.timeLeft < MinTimeLeftToIgnoreFate or tempFate.progress > CompletionToIgnoreFate then
         return nextFate
     else
@@ -1203,7 +1222,7 @@ function ChangeInstance()
         return
     end
 
-    if GetDistanceToTarget() > 10 then   
+    if GetDistanceToTarget() > 10 then
         LogInfo("[FATE] Targeting aetheryte, but greater than 10 distance")
         if GetDistanceToTarget() > 20 and not GetCharacterCondition(CharacterCondition.mounted) then
             State = CharacterState.mounting
@@ -1214,7 +1233,7 @@ function ChangeInstance()
         return
     end
 
-    LogInfo("[FATE] Within 10 distance") 
+    LogInfo("[FATE] Within 10 distance")
     if PathfindInProgress() or PathIsRunning() then
         yield("/vnav stop")
         return
@@ -1387,7 +1406,7 @@ function MiddleOfFateDismount()
     end
 
     if HasTarget() then
-        if DistanceBetween(GetPlayerRawXPos(), 0, GetPlayerRawZPos(), GetTargetRawXPos(), 0, GetTargetRawZPos()) > (MaxDistance + GetTargetHitboxRadius() + 1) then --fate距离？
+        if DistanceBetween(GetPlayerRawXPos(), 0, GetPlayerRawZPos(), GetTargetRawXPos(), 0, GetTargetRawZPos()) > (MaxDistance + GetTargetHitboxRadius() + 5) then
             if not (PathfindInProgress() or PathIsRunning()) then
                 LogInfo("[FATE] MiddleOfFateDismount PathfindAndMoveTo")
                 PathfindAndMoveTo(GetTargetRawXPos(), GetTargetRawYPos(), GetTargetRawZPos(), GetCharacterCondition(CharacterCondition.flying))
@@ -1482,10 +1501,7 @@ function MoveToFate()
         if HasTarget() then
             LogInfo("[FATE] Found FATE target, immediate rerouting")
             PathfindAndMoveTo(GetTargetRawXPos(), GetTargetRawYPos(), GetTargetRawZPos())
-            if IsInFate() then
-                State = CharacterState.middleOfFateDismount
-                LogInfo("[FATE] State Change: MiddleOfFateDismount")
-            elseif (CurrentFate.isOtherNpcFate or CurrentFate.isCollectionsFate) then
+            if (CurrentFate.isOtherNpcFate or CurrentFate.isCollectionsFate) then
                 State = CharacterState.interactWithNpc
                 LogInfo("[FATE] State Change: Interact with npc")
             -- if GetTargetName() == CurrentFate.npcName then
@@ -1494,7 +1510,8 @@ function MoveToFate()
             --     State = CharacterState.middleOfFateDismount
             --     LogInfo("[FATE] State Change: MiddleOfFateDismount")
             else
-                ClearTarget()
+                State = CharacterState.middleOfFateDismount
+                LogInfo("[FATE] State Change: MiddleOfFateDismount")
             end
             return
         else
@@ -1503,6 +1520,7 @@ function MoveToFate()
             else
                 TargetClosestFateEnemy()
             end
+            yield("/wait 0.5") -- give it a moment to make sure the target sticks
             return
         end
     end
@@ -1551,7 +1569,11 @@ function MoveToFate()
         nearestLandX, nearestLandY, nearestLandZ = RandomAdjustCoordinates(CurrentFate.x, CurrentFate.y, CurrentFate.z, 10)
     end
 
-    PathfindAndMoveTo(nearestLandX, nearestLandY, nearestLandZ, HasFlightUnlocked(SelectedZone.zoneId) and SelectedZone.flying)
+    if GetDistanceToPoint(nearestLandX, nearestLandY, nearestLandZ) > 5 then
+        PathfindAndMoveTo(nearestLandX, nearestLandY, nearestLandZ, HasFlightUnlocked(SelectedZone.zoneId) and SelectedZone.flying)
+    else
+        State = CharacterState.middleOfFateDismount
+    end
 end
 
 function InteractWithFateNpc()
@@ -1801,6 +1823,16 @@ function TurnOffAoes()
     end
 end
 
+function TurnOffRaidBuffs()
+    if AoesOn then
+        if RotationPlugin == "BMR" then
+            yield("/bmrai setpresetname "..RotationHoldBuffPreset)
+        elseif RotationPlugin == "VBM" then
+            yield("/vbmai setpresetname "..RotationHoldBuffPreset)
+        end
+    end
+end
+
 function SetMaxDistance()
     MaxDistance = MeleeDist --default to melee distance
     --ranged and casters have a further max distance so not always running all way up to target
@@ -1898,7 +1930,7 @@ function HandleUnexpectedCombat()
         TurnOffCombatMods()
         State = CharacterState.ready
         LogInfo("[FATE] State Change: Ready")
-        local randomWait = (math.floor(math.random()*WaitUpTo * 1000)/1000) + 1 -- truncated to 3 decimal places
+        local randomWait = (math.floor(math.random()*WaitUpTo * 1000)/1000) + 3 -- truncated to 3 decimal places
         yield("/wait "..randomWait)
         return
     end
@@ -2094,6 +2126,11 @@ function DoFate()
             end
         end
     end
+        
+    --hold buff thingy
+    if GetFateProgress(CurrentFate.fateId) >= PorcentageToHoldBuff then 
+        TurnOffRaidBuffs()
+    end   
 end
 
 --#endregion
@@ -2239,7 +2276,7 @@ function HandleDeath()
         if Echo and not DeathAnnouncementLock then
             DeathAnnouncementLock = true
             if Echo == "All" then
-                yield("/echo [FATE] 你死了 回以太水晶吧")
+                yield("/echo [FATE] 你死了 回以太水晶吧.")
             end
         end
 
@@ -2447,7 +2484,7 @@ function Repair()
         elseif ShouldAutoBuyDarkMatter then
             if not IsInZone(129) then
                 if Echo == "All" then
-                    yield("/echo 没有暗物质了！ 去下层甲板买点吧")
+                    yield("/echo 没有暗物质了！ 去下层甲板买点吧.")
                 end
                 TeleportTo("利姆萨·罗敏萨下层甲板")
                 return
