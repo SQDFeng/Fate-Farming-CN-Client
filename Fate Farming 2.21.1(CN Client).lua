@@ -284,7 +284,7 @@ BicolorExchangeData =
 
 FatesData = {
     {
-        zoneName = "Middle La Noscea",
+        zoneName = "中拉诺西亚",
         zoneId = 134,
         fatesList = {
             collectionsFates= {},
@@ -298,7 +298,7 @@ FatesData = {
         }
     },
     {
-        zoneName = "Lower La Noscea",
+        zoneName = "拉诺西亚低地",
         zoneId = 135,
         fatesList = {
             collectionsFates= {},
@@ -311,7 +311,7 @@ FatesData = {
         }
     },
     {
-        zoneName = "Central Thanalan",
+        zoneName = "中萨纳兰",
         zoneId = 141,
         fatesList = {
             collectionsFates= {
@@ -327,7 +327,7 @@ FatesData = {
         }
     },
     {
-        zoneName = "Eastern Thanalan",
+        zoneName = "东萨纳兰",
         zoneId = 145,
         fatesList = {
             collectionsFates= {},
@@ -339,7 +339,7 @@ FatesData = {
         }
     },
     {
-        zoneName = "Southern Thanalan",
+        zoneName = "南萨纳兰",
         zoneId = 146,
         fatesList = {
             collectionsFates= {},
@@ -350,7 +350,7 @@ FatesData = {
         flying = false
     },
     {
-        zoneName = "Outer La Noscea",
+        zoneName = "拉诺西亚外地",
         zoneId = 180,
         fatesList = {
             collectionsFates= {},
@@ -367,9 +367,9 @@ FatesData = {
             collectionsFates= {},
             otherNpcFates= {},
             fatesWithContinuations = {},
-							
-													   
-			  
+            specialFates = {
+                "He Taketh It with His Eyes" --behemoth
+            },
             blacklistedFates= {}
         }
     },
@@ -420,9 +420,9 @@ FatesData = {
             collectionsFates= {},
             otherNpcFates= {},
             fatesWithContinuations = {},
-							
-																 
-			  
+            specialFates = {
+                "Coeurls Chase Boys Chase Coeurls" --coeurlregina
+            },
             blacklistedFates= {}
         }
     },
@@ -443,6 +443,110 @@ FatesData = {
         fatesList= {
             collectionsFates= {},
             otherNpcFates= {},
+            fatesWithContinuations = {},
+            blacklistedFates= {}
+        }
+    },
+    {
+        zoneName = "基拉巴尼亚边区",
+        zoneId = 612,
+        fatesList= {
+            collectionsFates= {
+                { fateName="Showing The Recruits What For", npcName="Storm Commander Bharbennsyn" },
+                { fateName="Get Sharp", npcName="M Tribe Youth" },
+            },
+            otherNpcFates= {
+                { fateName="The Mail Must Get Through", npcName="Storm Herald" },
+                { fateName="The Antlion's Share", npcName="M Tribe Ranger" },
+                { fateName="Double Dhara", npcName="Resistence Fighter" },
+                { fateName="Keeping the Peace", npcName="Resistence Fighter" }
+            },
+            fatesWithContinuations = {},
+            blacklistedFates= {}
+        }
+    },
+    {
+        zoneName = "基拉巴尼亚山区",
+        zoneId = 620,
+        fatesList= {
+            collectionsFates= {
+                { fateName="Fletching Returns", npcName="Sorry Sutler" }
+            },
+            otherNpcFates= {
+                { fateName="Resist, Die, Repeat", npcName="Wounded Fighter" },
+                { fateName="And the Bandits Played On", npcName="Frightened Villager" },
+                { fateName="Forget-me-not", npcName="Coldhearth Resident" },
+                { fateName="Of Mice and Men", npcName="Furious Farmer" }
+            },
+            fatesWithContinuations = {},
+            blacklistedFates= {
+                "The Magitek Is Back", --escort
+                "A New Leaf" --escort
+            }
+        }
+    },
+    {
+        zoneName = "基拉巴尼亚湖区",
+        zoneId = 621,
+        fatesList= {
+            collectionsFates= {},
+            otherNpcFates= {},
+            fatesWithContinuations = {},
+            specialFates = {
+                "A Horse Outside" --ixion
+            },
+            blacklistedFates= {}
+        }
+    },
+    {
+        zoneName = "红玉海",
+        zoneId = 613,
+        fatesList= {
+            collectionsFates= {
+                { fateName="Treasure Island", npcName="Blue Avenger" },
+                { fateName="The Coral High Ground", npcName="Busy Beachcomber" }
+            },
+            otherNpcFates= {
+                { fateName="Another One Bites The Dust", npcName="Pirate Youth" },
+                { fateName="Ray Band", npcName="Wounded Confederate" },
+                { fateName="Bilge-hold Jin", npcName="Green Confederate" }
+            },
+            fatesWithContinuations = {},
+            blacklistedFates= {}
+        }
+    },
+    {
+        zoneName = "延夏",
+        zoneId = 614,
+        fatesList= {
+            collectionsFates= {
+                { fateName="Rice and Shine", npcName="Flabbergasted Farmwife" },
+                { fateName="More to Offer", npcName="Ginko" }
+            },
+            otherNpcFates= {
+                { fateName="Freedom Flies", npcName="Kinko" },
+                { fateName="A Tisket, a Tasket", npcName="Gyogun of the Most Bountiful Catch" }
+            },
+            specialFates = {
+                "Foxy Lady" --foxyyy
+            },
+            fatesWithContinuations = {},
+            blacklistedFates= {}
+        }
+    },
+    {
+        zoneName = "太阳神草原",
+        zoneId = 622,
+        fatesList= {
+            collectionsFates= {
+                { fateName="The Dataqi Chronicles: Duty", npcName="Altani" }
+            },
+            otherNpcFates= {
+                { fateName="Rock for Food", npcName="Oroniri Youth" },
+                { fateName="Killing Dzo", npcName="Olkund Dzotamer" },
+                { fateName="They Shall Not Want", npcName="Mol Shepherd" },
+                { fateName="A Good Day to Die", npcName="Qestiri Merchant" }
+            },
             fatesWithContinuations = {},
             blacklistedFates= {}
         }
@@ -473,6 +577,9 @@ FatesData = {
             },
             otherNpcFates= {},
             fatesWithContinuations = {},
+            specialFates = {
+                "A Finale Most Formidable" --formidable
+            },
             blacklistedFates= {}
         }
     },
@@ -533,9 +640,12 @@ FatesData = {
                 { fateName="灾厄的古塔尼亚之护卫提乌嘶", npcName="提乌嘶·澳恩" },
             },
             fatesWithContinuations = {},
+            specialFates = {
+                "灾厄的古塔尼亚之深海讨伐战" -- 古塔尼亚（特殊FATE）
+            },
             blacklistedFates= {
-                "贝汁物语", -- escort fate
-                "灾厄的古塔尼亚之护卫提乌嘶", -- escort fate
+                "贝汁物语", --护送
+                "灾厄的古塔尼亚之护卫提乌嘶" --护送
             }
         }
     },
@@ -557,9 +667,12 @@ FatesData = {
         zoneId = 957,
         fatesList= {
             collectionsFates= {
-                { fateName="Full Petal Alchemist: Perilous Pickings", npcName="Sajabaht" }
+                { fateName="芳香的炼金术士：危险的芬芳", npcName="调香师 萨加巴缇" }
             },
             otherNpcFates= {},
+            specialFates = {
+                "兽道诸神信仰：伪神降临" -- 兽道神明灯天王（特殊FATE）
+            },
             fatesWithContinuations = {},
             blacklistedFates= {}
         }
@@ -594,7 +707,7 @@ FatesData = {
             },
             fatesWithContinuations = {},
             blacklistedFates= {
-                "跨海而来的老饕", --really bad line of sight with rocks, get stuck not doing anything quite often
+                "跨海而来的老饕", --由于斜坡上视野不佳，可能什么都做不了就呆站着
             }
         }
     },
@@ -609,6 +722,9 @@ FatesData = {
                 { fateName="荣光之翼——阿尔·艾因", npcName="阿尔·艾因的朋友" },
                 { fateName="侵略兵器召回指令：保护N-6205", npcName="N-6205"},
                 { fateName="走向永恒的结局", npcName="米克·涅尔" }
+            },
+            specialFates = {
+                "侵略兵器召回指令：破坏侵略兵器希" -- 希（特殊FATE） 
             },
             fatesWithContinuations = {},
             blacklistedFates= {}
@@ -636,21 +752,23 @@ FatesData = {
         fatesList= {
             collectionsFates= {},
             otherNpcFates= {
-                { fateName="牧场关门", npcName="佩鲁佩鲁的旅行商人" },
-                { fateName="跃动的火热——山火", npcName="健步如飞 基维利" },
-                { fateName="不死之人", npcName="扫墓的尤卡巨人" },
-                { fateName="咖啡豆岌岌可危", npcName="咖啡农园的工作人员" },
-                { fateName="千年孤独", npcName="其瓦固佩刀者" },
-                { fateName="飞天魔厨——佩鲁的天敌", npcName="佩鲁佩鲁的旅行商人"} ,
-                { fateName="飞天魔厨——佩鲁的天敌", npcName="贴心巧匠 巴诺布罗坷" }
+                { fateName="牧场关门", npcName="健步如飞 基维利" }, --23 一般
+                { fateName="跃动的火热——山火", npcName="健步如飞 基维利" }, --22 boss
+                { fateName="不死之人", npcName="扫墓的尤卡巨人" }, --23 一般
+                { fateName="失落的山顶都城", npcName="守护遗迹的尤卡巨人" }, --24 防御
+                { fateName="咖啡豆岌岌可危", npcName="咖啡农园的工作人员" }, --24 防御
+                { fateName="千年孤独", npcName="其瓦固佩刀者" }, --23 一般
+                { fateName="飞天魔厨——佩鲁的天敌", npcName="佩鲁佩鲁的旅行商人" }, --22 boss
+                { fateName="狼之家族", npcName="佩鲁佩鲁的旅行商人" }  --23 一般
             },
             fatesWithContinuations = {
+                { fateName="不死之人", continuationIsBoss=true },
                 { fateName="千年孤独", continuationIsBoss=true }
             },
             blacklistedFates= {
-                "只有爆炸",
-                "狼之家族", -- multiple Pelupelu Peddler npcs, rng whether it tries to talk to the right one
-                "飞天魔厨——佩鲁的天敌" -- multiple Pelupleu Peddler npcs
+                "只有爆炸", -- 不知道为什么过不去
+                "狼之家族", -- 由于同一地点有多个同名NPC存在
+                "飞天魔厨——佩鲁的天敌" -- 由于同一地点有多个同名NPC存在
             }
         }
     },
@@ -660,21 +778,22 @@ FatesData = {
         fatesList={
             collectionsFates={
                 { fateName="密林淘金", npcName="莫布林族采集者" },
-                { fateName="巧若天工", npcName="哈努族手艺人" },
+				{ fateName="贡品小偷", npcName="哈努族巫女" },															  
                 
             },
             otherNpcFates= {
-                { fateName="怪力大肚王——非凡飔戮龙", npcName="哈努族捕鱼人" },
-                { fateName="芦苇荡的时光", npcName="哈努族农夫" },
-                { fateName="贡品小偷", npcName="哈努族巫女" },
-                { fateName="横征暴敛？", npcName="佩鲁佩鲁族商人" },
-                { fateName="美丽菇世界", npcName="贴心巧匠 巴诺布罗坷" },
-
+                { fateName="怪力大肚王——非凡飔戮龙", npcName="哈努族捕鱼人" }, --22 boss
+                { fateName="芦苇荡的时光", npcName="哈努族农夫" }, --23 一般
+                { fateName="贡品小偷", npcName="哈努族巫女" }, --24 防御
+                { fateName="横征暴敛？", npcName="佩鲁佩鲁族商人" }, --24 防御
+                { fateName="美丽菇世界", npcName="贴心巧匠 巴诺布罗坷" }  --23 一般
             },
-            fatesWithContinuations = {},
+            fatesWithContinuations = {
+                { fateName="美丽菇世界", continuationIsBoss=true }
+            },
             blacklistedFates= {
-                "横征暴敛？",
-                "美丽菇世界" -- multiple Pelupelu Peddlers
+				"打鼹鼠行动",
+                "横征暴敛？" -- 由于同一地点有多个同名NPC存在
             }
         }
     },
@@ -686,17 +805,17 @@ FatesData = {
                 { fateName="逃离恐怖菇", npcName="霍比格族采集者" }
             },
             otherNpcFates= {
-                --{ fateName=, npcName="顶击大貒猪" }, 2 npcs names same thing....
-                { fateName="血染利爪——米尤鲁尔", npcName="Xbr'aal Hunter" },
+                --{ fateName=, npcName="灵豹之民猎人" }, 2 npcs names same thing....
+                { fateName="血染利爪——米尤鲁尔", npcName="灵豹之民猎人" },
                 { fateName="致命螳螂", npcName="灵豹之民猎人" },
-                { fateName="Porting is Such Sweet Sorrow", npcName="Hoobigo Porter" }
-                -- { fateName="Stick it to the Mantis", npcName="Xbr'aal Sentry" }, -- 2 npcs named same thing.....
+                { fateName="守护秘药之战", npcName="霍比格族运货人" }
+                -- { fateName="逃离恐怖菇", npcName="霍比格族采集者" }, -- 2 npcs named same thing.....
             },
             fatesWithContinuations = {
-                "Stabbing Gutward"
+                "辉鳞族不法之徒袭击事件"
             },
             blacklistedFates= {
-                "The Departed"
+                "圣树邪魔——坏死花"
             }
         }
     },
@@ -706,19 +825,20 @@ FatesData = {
         fatesList= {
             collectionsFates= {
                 { fateName="剃毛时间", npcName="迎曦之民采集者" },
-                { fateName="蛇王得酷热涅：狩猎的杀手锏", npcName="佩鲁佩鲁族的旅行商人" }
+                { fateName="蛇王得酷热涅：狩猎的杀手锏", npcName="蛇王得酷热涅" }
             },
             otherNpcFates= {
                 { fateName="死而复生的恶棍——阴魂不散 扎特夸", npcName="迎曦之民劳动者" }, --22 boss
-                { fateName="不甘的冲锋者——灰达奇", npcName="崇灵之民女性" }, --23 normal
-                { fateName="和牛一起旅行", npcName="崇灵之民女性" }, --22 boss
-                { fateName="大湖之恋", npcName="崇灵之民渔夫" }, --24 tower defense
-                { fateName="神秘翼龙荒野奇谈", npcName="佩鲁佩鲁族的旅行商人" },
-                { fateName="That's Me and the Porter", npcName="贴心巧匠 巴诺布罗坷" },
+                { fateName="不甘的冲锋者——灰达奇", npcName="崇灵之民男性" }, --22 boss
+                { fateName="和牛一起旅行", npcName="崇灵之民女性" }, --23 一般
+                { fateName="大湖之恋", npcName="崇灵之民渔夫" }, --24 防御
+                { fateName="神秘翼龙荒野奇谈", npcName="佩鲁佩鲁族的旅行商人" }  --23 一般
             },
-            fatesWithContinuations = {},
+            fatesWithContinuations = {
+                { fateName="蛇王得酷热涅：狩猎的杀手锏", continuationIsBoss=false }
+            },
             specialFates = {
-                "蛇王得酷热涅：荒野的死斗" -- big snake fate
+                "蛇王得酷热涅：荒野的死斗" -- 得酷热涅（特殊FATE）
             },
             blacklistedFates= {}
         }
@@ -729,22 +849,22 @@ FatesData = {
         fatesList= {
             collectionsFates= {
                 { fateName="药师的工作", npcName="迎曦之民栽培者" },
+                { fateName="亮闪闪的可回收资源", npcName="英姿飒爽的再造者" }
             },
             otherNpcFates= {
-                { fateName="机械迷城", npcName="初出茅庐的狩猎者" },
-                { fateName="你来我往", npcName="初出茅庐的狩猎者" },
-                { fateName="剥皮行者", npcName="陷入危机的狩猎者" },
-                { fateName="机械公敌", npcName="走投无路的再造者" },
-                { fateName="铭刻于灵魂中的恐惧", npcName="终流地的再造者" },
-                { fateName="前路多茫然", npcName="害怕的运送者" },
-                { fateName="When It's So Salvage", npcName="Refined Reforger" }
+                { fateName="机械迷城", npcName="初出茅庐的狩猎者" }, --23 一般
+                { fateName="你来我往", npcName="初出茅庐的狩猎者" }, --23 一般
+                { fateName="剥皮行者", npcName="陷入危机的狩猎者" }, --23 一般
+                { fateName="机械公敌", npcName="走投无路的再造者" }, --23 一般
+                { fateName="铭刻于灵魂中的恐惧", npcName="终流地的再造者" }, --23 一般
+                { fateName="前路多茫然", npcName="害怕的运送者" }  --23 一般
             },
             fatesWithContinuations = {
                 { fateName="机械公敌", continuationIsBoss=false }
             },
             blacklistedFates= {
-                "When It's So Salvage", -- terrain is terrible
-                "print('I hate snakes')"
+                "亮闪闪的可回收资源", -- terrain is terrible
+                "养虺成蛇"
             }
         }
     },
@@ -757,13 +877,13 @@ FatesData = {
                 { fateName="记忆的碎片", npcName="无失哨兵GX" }
             },
             otherNpcFates= {
-                { fateName="为了运河镇的安宁", npcName="无失哨兵GX" },
-                { fateName="亩鼠米卡：盛装巡游开始", npcName="滑稽巡游主宰" }
+                { fateName="为了运河镇的安宁", npcName="无失哨兵GX" }, --24 防御
+                { fateName="亩鼠米卡：盛装巡游开始", npcName="滑稽巡游主宰" }  --23 一般
             },
             fatesWithContinuations =
             {
-                { fateName="水城噩梦", continuationIsBoss=true },
-                { fateName="亩鼠米卡：盛装巡游开始", continuationIsBoss=true }
+                { fateName="水城噩梦", continuationIsBoss=ture },
+                { fateName="亩鼠米卡：盛装巡游开始", continuationIsBoss=ture }
             },
             specialFates =
             {
