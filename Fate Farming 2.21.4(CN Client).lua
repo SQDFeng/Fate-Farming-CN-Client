@@ -8,7 +8,7 @@
 Created by: pot0to (https://ko-fi.com/pot0to)
 State Machine Diagram: https://github.com/pot0to/pot0to-SND-Scripts/blob/main/FateFarmingStateMachine.drawio.png
         
-    -> 2.21.3   调整了着陆逻辑，希望以后不会再卡在太高的地方
+    -> 2.21.4   调整了着陆逻辑，希望以后不会再卡在太高的地方
 				增加了只执行 奖励 Fate 的功能
 				调整了旧萨雷安双色宝石商人的坐标
 				支持多区域刷 Fate
@@ -23,6 +23,13 @@ State Machine Diagram: https://github.com/pot0to/pot0to-SND-Scripts/blob/main/Fa
 				/略微/ 更平滑的下马动作（其实变化不大）
 				增加了检查，防止虚拟导航中断施法者
 				在战斗中关闭了 Boss Fate 的虚拟导航路径
+										   
+																	
+																		   
+																			
+
+																																				
+																																			   
 
 ********************************************************************************
 *                               Required Plugins                               *
@@ -38,6 +45,7 @@ Plugins that are needed for it to work:
         -> Veyn's BossMod: https://puni.sh/api/repository/veyn
         -> Wrath Combo: https://love.puni.sh/ment.json
     -> Some form of AI . Options are: 
+									   
         -> BossMod Reborn: https://raw.githubusercontent.com/FFXIV-CombatReborn/CombatRebornRepo/main/pluginmaster.json
         -> Veyn's BossMod: https://puni.sh/api/repository/veyn
     -> TextAdvance: (用来和fate里的NPC互动)
@@ -87,7 +95,20 @@ BonusFatesOnly                      = false         --如果是true，则只做�
 MeleeDist                           = 2.5           --近战攻击距离。近战攻击（自动攻击）的最大距离为2.59y，2.60为 "目标超出范围"。
 RangedDist                          = 20            --远程攻击距离。远程攻击和法术的最大可用距离为25.49y，25.5为 "目标超出范围"。
 
+				   
+																												   
+																																		
+																																						 
+																																																										
+																																										 
+																													 
+																							   
+																									  
+																																																									  
+																																	  
+																																																		   
 RotationPlugin                      = "RSR"         --选项：RSR/BMR/VBM/Wrath/None
+									   
     RSRAoeType                      = "Full"        --选项：Cleave/Full/Off
 
     -- 仅适用于 BMR/VBM
@@ -101,7 +122,7 @@ IgnoreForlorns                      = false
     IgnoreBigForlornOnly            = false
 
 --Post Fate Settings
-WaitUpTo                            = 5            --完成Fate任务后，等待开始下一个任务的最大秒数。
+WaitUpTo                            = 2            --完成Fate任务后，等待开始下一个任务的最大秒数。
                                                         --实际等待时间将在1秒到该值之间随机生成（1899行）。
 EnableChangeInstance                = true          --没有Fate时是否切换副本（只作用于DT类型的Fate）。
     WaitIfBonusBuff                 = true          --如果你有"危命奖励提高"buff，则不切换副本区。
@@ -232,7 +253,7 @@ ClassList =
     brd = { classId=23, className="吟游诗人", isMelee=false, isTank=false },
     whm = { classId=24, className="白魔法师", isMelee=false, isTank=false },
     blm = { classId=25, className="黑魔法师", isMelee=false, isTank=false },
-    acn = { classId=26, className="Arcanist", isMelee=false, isTank=false },
+    acn = { classId=26, className="秘术师", isMelee=false, isTank=false },
     smn = { classId=27, className="召唤师", isMelee=false, isTank=false },
     sch = { classId=28, className="学者", isMelee=false, isTank=false },
     rog = { classId=29, className="双剑师", isMelee=false, isTank=false },
@@ -289,11 +310,14 @@ FatesData = {
         fatesList = {
             collectionsFates= {},
             otherNpcFates= {
-                { fateName="Thwack-a-Mole" , npcName="Troubled Tiller" },
-                { fateName="Yellow-bellied Greenbacks", npcName="Yellowjacket Drill Sergeant"},
-                { fateName="The Orange Boxes", npcName="Farmer in Need" }
+                { fateName="无穷无尽的打地鼠" , npcName="一筹莫展的农夫" },
+                { fateName="实战巡礼", npcName="黄衫队训练教官"},
+                { fateName="鼠害的小聪明", npcName="求助的农夫" }, --防御
+                { fateName="德内维尔关防卫训练", npcName="魔鬼漩士 杜恩法尔"} --防御
             },
-            fatesWithContinuations = {},
+            fatesWithContinuations = {
+                { fateName="追逐", continuationIsBoss=true }
+            },
             blacklistedFates= {}
         }
     },
@@ -303,28 +327,84 @@ FatesData = {
         fatesList = {
             collectionsFates= {},
             otherNpcFates= {
-                { fateName="Away in a Bilge Hold" , npcName="Yellowjacket Veteran" },
-                { fateName="Fight the Flower", npcName="Furious Farmer" }
+                { fateName="花丛噩梦" , npcName="愤怒的农夫" },
+                { fateName="小麦粉战争" , npcName="求助的风车管理人" },
+                { fateName="海盗的方式" , npcName="黄衫队陆战兵" },
+                { fateName="麻烦人生——偷渡者阿科特修提姆", npcName="熟练的警备兵" }  --防御
+            },
+            fatesWithContinuations = {
+                { fateName="雪松原之战", continuationIsBoss=true }
+            },
+            blacklistedFates= {}
+        }
+    },
+    {
+        zoneName = "西拉诺西亚",
+        zoneId = 138,
+        fatesList = {
+            collectionsFates= {
+                { fateName="海关的强制搜查", npcName="黄衫队陆尉" }
+            },
+            otherNpcFates= {
+                { fateName="支援补给线", npcName="黑涡团运输兵" },
+                { fateName="蔬菜革命——蔓德拉战队", npcName="希尔迪布兰德" }
+            },
+            fatesWithContinuations = {
+                { fateName="北防波堤之战 侦察行动", continuationIsBoss=true },
+                { fateName="南防波堤之战 侦察行动", continuationIsBoss=true }
+            },
+            blacklistedFates= {}
+        }
+    },
+    {
+        zoneName = "拉诺西亚高地",
+        zoneId = 139,
+        fatesList = {
+            collectionsFates= {},
+            otherNpcFates= {
+                { fateName="不幸的佣兵——美男子布迦加", npcName="黑涡团副漩士"}
             },
             fatesWithContinuations = {},
             blacklistedFates= {}
         }
     },
     {
+        zoneName = "西萨纳兰",
+        zoneId = 140,
+        fatesList = {
+            collectionsFates= {
+                { fateName="土之核心", npcName="热心工作的工人" }
+            },
+            otherNpcFates= {
+                { fateName="阶级愤怒的铁锤", npcName="束手无策的工人" }
+            },
+            fatesWithContinuations = {},
+            blacklistedFates= {
+                "荒野的保镖", --呃呃，自动寻路不喜欢这样的傻逼大桥
+                "护送负伤者" --护送类
+            }
+        },
+        flying=false --别问 问就是傻缺地平关大升降梯
+    },
+    {
         zoneName = "中萨纳兰",
         zoneId = 141,
         fatesList = {
             collectionsFates= {
-                { fateName="Let them Eat Cactus", npcName="Hungry Hobbledehoy"},
+                { fateName="营养丰富的仙人掌", npcName="饥饿的少女"},
+                { fateName="屈伊伯龙家的人" , npcName="无计可施的商人" }
             },
             otherNpcFates= {
-                { fateName="A Few Arrows Short of a Quiver" , npcName="Crestfallen Merchant" },
-                { fateName="Wrecked Rats", npcName="Coffer & Coffin Heavy" },
-                { fateName="Something to Prove", npcName="Cowardly Challenger" }
+                { fateName="深不见底——酒豪谷谷卢恩", npcName="金库灵柩亭的保镖" },
+                { fateName="粗野的赌徒——无赖格里希尔德", npcName="失败的冒险者" },
+                { fateName="杀人鱼的末日", npcName="少年克里斯"} 
             },
             fatesWithContinuations = {},
-            blacklistedFates= {}
-        }
+            blacklistedFates= {
+                -- "守住晚饭" --地形疑似自动寻路过不去
+            }
+        },
+        flying=false --垃圾se
     },
     {
         zoneName = "东萨纳兰",
@@ -332,45 +412,154 @@ FatesData = {
         fatesList = {
             collectionsFates= {},
             otherNpcFates= {
-                { fateName="Attack on Highbridge: Denouement" , npcName="Brass Blade" }
+                { fateName="跨天桥上的死斗 市民营救战" , npcName="铜刃团卫兵" }, --前置fate失败才会出现
+                { fateName="阻止敌人的侵略", npcName="恒辉队侦察兵" }
             },
-            fatesWithContinuations = {},
-            blacklistedFates= {}
+            fatesWithContinuations = {
+                { fateName="跨天桥上的死斗 前哨战", continuationIsBoss=false },
+                { fateName="跨天桥上的死斗 守卫战", continuationIsBoss=true }, --需要前哨战成功
+                -- { fateName="跨天桥上的死斗 迎击兹兹卢恩", continuationIsBoss=true }  --需要守卫战成功
+            },
+            specialFates = {
+                "死亡的假面——黄道巨蟹"
+            },
+            blacklistedFates= {
+                "阻止敌人的侵略" --近战只有卡住的命，而且又是鸟巢类     
+            }
         }
     },
     {
         zoneName = "南萨纳兰",
         zoneId = 146,
         fatesList = {
-            collectionsFates= {},
-            otherNpcFates= {},
-            fatesWithContinuations = {},
-            blacklistedFates= {}
+            collectionsFates= {
+                { fateName="解开真理", npcName="古代魔法研究者" }
+            },
+            otherNpcFates= {
+                { fateName="荒野灭火", npcName="恒辉队兵卒" },
+                { fateName="怒涛怪力——金刚爪奈寨德·夏", npcName="恒辉队侦察兵" }
+            },
+            fatesWithContinuations = {
+                { fateName="无法无天——破戒者吉斯弗里德", continuationIsBoss=true },
+                { fateName="沙漠之子", continuationIsBoss=false } -- 后续：沙漠皇帝——乌尔哈德希
+            },
+            blacklistedFates= {
+                "侦察兵的工作", --护送
+                "工艺神的守护者", --护送
+                "猎人与猎物", --vnav无法寻路？？
+                "沙漠皇帝——乌尔哈德希" --BOSS出现后打小怪没进度的，小怪无限刷
+
+                -- BAN了不悔战阵的fate 自由飞吧
+                --"蜥蜴人军特殊部队——炎牙众",
+                --"速射名手——白火花哈普古·秋",
+                --"第一关门攻略战",
+                --"火神的召唤者——流火印阿法基·天"
+            }
         },
-        flying = false
+        flying = false -- SE 加点地图飞行高度上限吧 求你了
+    },
+    {
+        zoneName = "黑衣森林中央林区",
+        zoneId = 148,
+        fatesList = {
+            collectionsFates= {
+                { fateName="以毒攻毒", npcName="鬼哭队队员" },
+                { fateName="寻求真理", npcName="不知名的法师" }
+            },
+            otherNpcFates= {
+            },
+            fatesWithContinuations = {},
+            specialFates = {
+                "上古斗神——奥丁" -- 2.0特殊fate！
+            },
+            blacklistedFates= {
+                "愤怒的教官——狂人米罗东", --护送
+                "谨记地母神之所忘" --窄桥…… 
+            }
+        }
+    },
+    {
+        zoneName = "黑衣森林东部林区",
+        zoneId = 152,
+        fatesList = {
+            collectionsFates= {
+                { fateName="昔日之光", npcName="新叶 法纳克希奥"}
+            },
+            otherNpcFates= {
+            },
+            fatesWithContinuations = {
+                { fateName="百灵啼遭遇战", continuationIsBoss=false }
+            },
+            specialFates = {
+                "上古斗神——奥丁", -- 2.0特殊fate！
+                "无情的收割者——懒惰口花劳伦斯"
+            },
+            blacklistedFates= {
+                "祝福的佳酿" --护送
+            }
+        }
+    },
+    {
+        zoneName = "黑衣森林北部林区",
+        zoneId = 154,
+        fatesList = {
+            collectionsFates= {
+                { fateName="山人的心愿", npcName="形迹可疑的开山工" }
+            },
+            otherNpcFates= {
+            },
+            fatesWithContinuations = {},
+            specialFates = {
+                "上古斗神——奥丁" -- 2.0特殊fate！
+            },
+            blacklistedFates= {}
+        }
     },
     {
         zoneName = "拉诺西亚外地",
         zoneId = 180,
         fatesList = {
             collectionsFates= {},
-            otherNpcFates= {},
-            fatesWithContinuations = {},
-            blacklistedFates= {}
+            otherNpcFates= {
+                { fateName="营救补给部队", npcName="无助的车夫" },
+                { fateName="试掘地强攻", npcName="黑涡团二等漩兵" }
+            },
+            fatesWithContinuations = {
+                -- { fateName="妖异杀手——第59团巡逻员凯伽", continuationIsBoss=true },
+                -- { fateName="钢之炼金术士", continuationIsBoss=true }
+                -- 隔着好远呢 当不存在吧
+            },
+            blacklistedFates= {
+                "试掘地强攻" --SE能不能少做点打鸟巢系的fate
+            }
         },
-        flying = false
+        flying = false --这个傻逼地灵族矿山 妈的SE
     },
     {
         zoneName = "库尔札斯中央高地",
         zoneId = 155,
         fatesList= {
-            collectionsFates= {},
-            otherNpcFates= {},
-            fatesWithContinuations = {},
-            specialFates = {
-                "He Taketh It with His Eyes" --behemoth
+            collectionsFates= {
+                { fateName="圣人的泪水", npcName="库尔札斯的商人" },
             },
-            blacklistedFates= {}
+            otherNpcFates= {
+                { fateName="斯瓦拉的袭击", npcName="福尔唐家的工兵" },
+                { fateName="巨人谜语", npcName="福尔唐家的卫兵" },
+                { fateName="力量之塔", npcName="艾因哈特家的卫兵"}
+            },
+            fatesWithContinuations = {
+                -- { fateName="斯瓦拉的袭击", continuationIsBoss=false },
+                { fateName="斯瓦拉的恐怖", continuationIsBoss=true }
+            },
+            specialFates = {
+                "传说的魔兽——贝希摩斯",
+                "受伤的魔兽——贝希摩斯",
+                "归来的复仇者——史特罗佩斯"
+            },
+            blacklistedFates= {
+                "满天星光" --护送
+                --"斯瓦拉的袭击" --护送
+            }
         }
     },
     {
@@ -378,9 +567,22 @@ FatesData = {
         zoneId = 397,
         fatesList= {
             collectionsFates= {},
-            otherNpcFates= {},
-            fatesWithContinuations = {},
-            blacklistedFates= {}
+            otherNpcFates= {
+                { fateName="年轻龙骑士——阿莱姆贝", npcName="圣菲内雅连队的骑兵" },
+                { fateName="功绩掠夺者——卑鄙的维尔纳", npcName="直率的博多内" }
+            },
+            fatesWithContinuations = {
+                { fateName="白雪茫茫", continuationIsBoss=true },
+                { fateName="黑铁桥之战", continuationIsBoss=true },
+                { fateName="讨伐龙之眷属", continuationIsBoss=true },
+                { fateName="年轻龙骑士——阿莱姆贝", continuationIsBoss=true }
+            },
+            specialFates = {
+                "吞噬牦牛的巨人——巨脚雪人", -- 太硬了！！！
+            },
+            blacklistedFates= {
+                "注意冰面" --注意被栅栏挡住的你（哭）
+            }
         }
     },
     {
@@ -388,19 +590,40 @@ FatesData = {
         zoneId = 156,
         fatesList= {
             collectionsFates= {},
-            otherNpcFates= {},
+            otherNpcFates= {
+                { fateName="昔日不在", npcName="经验丰富的冒险者" },
+                { fateName="圣地巡礼", npcName="圣寇伊纳克财团的搬运工" },
+                { fateName="旅伴", npcName="体型强健的调查员" }
+            },
             fatesWithContinuations = {},
-            blacklistedFates= {}
+            blacklistedFates= {
+                "旅伴" --护送
+            }
         }
     },
     {
         zoneName = "阿巴拉提亚云海",
         zoneId = 401,
         fatesList= {
-            collectionsFates= {},
-            otherNpcFates= {},
-            fatesWithContinuations = {},
-            blacklistedFates= {}
+            collectionsFates= {
+                { fateName="天空之云", npcName="年轻的尊杜人 " } 
+            },
+            otherNpcFates= {
+                { fateName="逃亡者", npcName="逃亡的尊杜奴隶" }, --护送
+                { fateName="突飞猛进", npcName="云顶蔷薇骑兵" }
+            },
+            fatesWithContinuations = {
+                { fateName="冠恐鸟窝破坏命令", continuationIsBoss=true },
+                { fateName="云神祭司——凯那瓦努", continuationIsBoss=false },
+                { fateName="凯那瓦努的弟子们", continuationIsBoss=true }
+            },
+            specialFates = {
+                "暴食人形岩——大地饕餮" -- 很硬
+            },
+            blacklistedFates= {
+                "冠恐鸟窝破坏命令", --打鸟巢才算有效进度，一直打渡渡鸟没用
+                "逃亡者" --护送
+            }
         }
     },
     {
@@ -408,8 +631,15 @@ FatesData = {
         zoneId = 402,
         fatesList= {
             collectionsFates= {},
-            otherNpcFates= {},
-            fatesWithContinuations = {},
+            otherNpcFates= {
+                { fateName="错误报告199号", npcName="检查系统" }
+            },
+            fatesWithContinuations = {
+                { fateName= "全自动手工业", continuationIsBoss=true }
+            },
+            specialFates = {
+                "太古威胁 夜光花歼灭战" --3.0特殊fate
+            },
             blacklistedFates= {}
         }
     },
@@ -417,13 +647,26 @@ FatesData = {
         zoneName = "龙堡参天高地",
         zoneId = 398,
         fatesList= {
-            collectionsFates= {},
-            otherNpcFates= {},
-            fatesWithContinuations = {},
-            specialFates = {
-                "Coeurls Chase Boys Chase Coeurls" --coeurlregina
+            collectionsFates= {
+                { fateName="不灭之箭", npcName="尾羽集落的猎人" }
             },
-            blacklistedFates= {}
+            otherNpcFates= {
+                { fateName="芳香四溢", npcName="散发醇香的莫西·匹克" }
+            },
+            fatesWithContinuations = {
+                { fateName="敌人的敌人还是敌人", continuationIsBoss=true }
+                -- { fateName="雷兽女王——长须豹女王", continuationIsBoss=true },
+                -- { fateName="逆袭女王——长须豹女王", continuationIsBoss=true }
+            },
+            specialFates = {
+                "坚甲铁龙——塔拉斯克", -- 很硬
+                "雷兽女王——长须豹女王",
+                "逆袭女王——长须豹女王",
+                "幻影女王——长须豹女王"
+            },
+            blacklistedFates= {
+                "鲑鱼战争" --地形原因 近战容易卡住...
+            }
         }
     },
     {
@@ -431,20 +674,56 @@ FatesData = {
         zoneId=399,
         tpZoneId = 478,
         fatesList= {
-            collectionsFates= {},
-            otherNpcFates= {},
-            fatesWithContinuations = {},
-            blacklistedFates= {}
+            collectionsFates= {
+                { fateName="恶魔机器", npcName="多面玲珑 斯里克崔克斯" },
+                { fateName="珍惜古书", npcName="视书如命 布罗菲克斯" }
+            },
+            otherNpcFates= {
+                { fateName="使魔不好当", npcName="马洛·罗格" }
+            },
+            fatesWithContinuations = {
+                -- { fateName="恶魔机器", continuationIsBoss=false },
+                { fateName="复仇者们", continuationIsBoss=true },
+                { fateName="哥布林纷争", continuationIsBoss=true }
+            },
+            specialFates = {
+                "淋血暴君——天枢巨熊",
+                "全面改造机——3号哥布林装甲J型"
+            },
+            blacklistedFates= {
+                "使魔不好当" --护送
+            }
         }
     },
     {
         zoneName = "翻云雾海",
         zoneId=400,
         fatesList= {
-            collectionsFates= {},
-            otherNpcFates= {},
-            fatesWithContinuations = {},
-            blacklistedFates= {}
+            collectionsFates= {
+                { fateName="莫古力赚钱之道", npcName="追求时尚的莫古力" }
+            },
+            otherNpcFates= {
+                { fateName="永不衰退的吸引力", npcName="滔滔不绝的莫古力" }, -- 护送
+                { fateName="古恐龙再见", npcName="小顽童 莫古希" },
+                { fateName="云海小顽童——莫古希", npcName="优等生 莫古珀" },
+                { fateName="天极白垩宫防卫战 救助幼龙", npcName="天极幼龙" },
+                { fateName="夜与雾", npcName="法亚拉" },
+                { fateName="圣与邪的扭曲", npcName="天极幼龙" }
+            },
+            fatesWithContinuations = {
+                { fateName="与龙共舞", continuationIsBoss=false },
+                { fateName="火尾飞蜥大军", continuationIsBoss=false },
+                { fateName="暗鳞黑龙征讨战 白龙支援" , continuationIsBoss=false }
+                -- { fateName="暗鳞黑龙征讨战 追击作战" , continuationIsBoss=false }
+            },
+            specialFates = {
+                "苍天白龙——维德佛尔尼尔" --纯纯挂机我猜也触发不了的 大概
+            },
+            blacklistedFates= {
+                "暗鳞黑龙征讨战 白龙支援",  -- 太硬了！一个人实在打不动
+                "天极白垩宫防卫战 救助莫古", --比较硬，但是有治疗战术鸟奶你的话也不是打不死
+                "永不衰退的吸引力" --别护送了！
+            }
         }
     },
     {
@@ -452,14 +731,14 @@ FatesData = {
         zoneId = 612,
         fatesList= {
             collectionsFates= {
-                { fateName="Showing The Recruits What For", npcName="Storm Commander Bharbennsyn" },
-                { fateName="Get Sharp", npcName="M Tribe Youth" },
+                { fateName="集中训练营 士兵之章", npcName="弗雷拉克·巴尔本辛协漩校" },
+                { fateName="新石器时代", npcName="梅氏的少女" },
             },
             otherNpcFates= {
-                { fateName="The Mail Must Get Through", npcName="Storm Herald" },
-                { fateName="The Antlion's Share", npcName="M Tribe Ranger" },
-                { fateName="Double Dhara", npcName="Resistence Fighter" },
-                { fateName="Keeping the Peace", npcName="Resistence Fighter" }
+                { fateName="冥河世界", npcName="黑涡团传令员" },
+                { fateName="蚁狮没有攻击性", npcName="梅氏的猎人" },
+                { fateName="下个岩石继续", npcName="阿拉米格解放军战士" },
+                { fateName="边境巡视员", npcName="阿拉米格解放军战士" }
             },
             fatesWithContinuations = {},
             blacklistedFates= {}
@@ -470,13 +749,13 @@ FatesData = {
         zoneId = 620,
         fatesList= {
             collectionsFates= {
-                { fateName="Fletching Returns", npcName="Sorry Sutler" }
+                { fateName="狮鹫物语", npcName="流浪的酒保商人" }
             },
             otherNpcFates= {
-                { fateName="Resist, Die, Repeat", npcName="Wounded Fighter" },
-                { fateName="And the Bandits Played On", npcName="Frightened Villager" },
-                { fateName="Forget-me-not", npcName="Coldhearth Resident" },
-                { fateName="Of Mice and Men", npcName="Furious Farmer" }
+                { fateName="勇敢的蚱蜢", npcName="受伤的战士" },
+                { fateName="生死关头", npcName="阿拉加纳的居民" },
+                { fateName="等好久了！", npcName="寒炉村居民" },
+                { fateName="血的收获", npcName="倔强的农夫" }
             },
             fatesWithContinuations = {},
             blacklistedFates= {
@@ -493,7 +772,7 @@ FatesData = {
             otherNpcFates= {},
             fatesWithContinuations = {},
             specialFates = {
-                "A Horse Outside" --ixion
+                "传说中的雷马——伊克西翁" --ixion
             },
             blacklistedFates= {}
         }
@@ -503,13 +782,13 @@ FatesData = {
         zoneId = 613,
         fatesList= {
             collectionsFates= {
-                { fateName="Treasure Island", npcName="Blue Avenger" },
-                { fateName="The Coral High Ground", npcName="Busy Beachcomber" }
+                { fateName="Treasure Island", npcName="被打劫的碧甲族" },
+                { fateName="The Coral High Ground", npcName="稳重的海盗" }
             },
             otherNpcFates= {
-                { fateName="Another One Bites The Dust", npcName="Pirate Youth" },
-                { fateName="Ray Band", npcName="Wounded Confederate" },
-                { fateName="Bilge-hold Jin", npcName="Green Confederate" }
+                { fateName="兵法修行者——一刀客千万", npcName="海贼众的少女" },
+                { fateName="红甲族恣意的风筝", npcName="负伤的海盗" },
+                { fateName="无礼的牛鬼——尘轮鬼", npcName="十分困扰的海盗" }
             },
             fatesWithContinuations = {},
             blacklistedFates= {}
@@ -520,15 +799,15 @@ FatesData = {
         zoneId = 614,
         fatesList= {
             collectionsFates= {
-                { fateName="Rice and Shine", npcName="Flabbergasted Farmwife" },
-                { fateName="More to Offer", npcName="Ginko" }
+                { fateName="稻生物怪录", npcName="束手无策的农妇" },
+                { fateName="银狐的心愿", npcName="银狐" }
             },
             otherNpcFates= {
-                { fateName="Freedom Flies", npcName="Kinko" },
-                { fateName="A Tisket, a Tasket", npcName="Gyogun of the Most Bountiful Catch" }
+                { fateName="金狐的心愿", npcName="金狐" },
+                { fateName="倒霉的鱼群", npcName="大鱼丰收 鱼群" }
             },
             specialFates = {
-                "Foxy Lady" --foxyyy
+                "九尾妖狐——玉藻御前" --foxyyy
             },
             fatesWithContinuations = {},
             blacklistedFates= {}
@@ -539,13 +818,13 @@ FatesData = {
         zoneId = 622,
         fatesList= {
             collectionsFates= {
-                { fateName="The Dataqi Chronicles: Duty", npcName="Altani" }
+                { fateName="答塔克的旅程之挤羊奶", npcName="阿儿塔尼" }
             },
             otherNpcFates= {
-                { fateName="Rock for Food", npcName="Oroniri Youth" },
-                { fateName="Killing Dzo", npcName="Olkund Dzotamer" },
-                { fateName="They Shall Not Want", npcName="Mol Shepherd" },
-                { fateName="A Good Day to Die", npcName="Qestiri Merchant" }
+                { fateName="忏悔", npcName="奥罗尼部年轻人" },
+                { fateName="归家路上的放牛少女", npcName="奥儿昆德部牛倌" },
+                { fateName="转瞬的噩梦", npcName="模儿部羊倌" },
+                { fateName="沉默的制裁", npcName="凯苏提尔部商人" }
             },
             fatesWithContinuations = {},
             blacklistedFates= {}
@@ -578,7 +857,7 @@ FatesData = {
             otherNpcFates= {},
             fatesWithContinuations = {},
             specialFates = {
-                "A Finale Most Formidable" --formidable
+                "激斗畏惧装甲之秘密武器" -- 畏惧装甲（特殊FATE）
             },
             blacklistedFates= {}
         }
@@ -600,10 +879,10 @@ FatesData = {
         zoneId = 816,
         fatesList= {
             collectionsFates= {
-                { fateName="仙子尾巴之金黄花蜜", npcName="寻找花蜜的仙子" }
+                { fateName="仙子尾巴之魔物包围网", npcName="寻找花蜜的仙子" }
             },
             otherNpcFates= {
-                { fateName="仙子尾巴之魔物包围网", npcName="寻找花蜜的仙子" },
+                { fateName="仙子尾巴之金黄花蜜", npcName="寻找花蜜的仙子" },
             },
             fatesWithContinuations = {},
             blacklistedFates= {}
@@ -616,11 +895,11 @@ FatesData = {
             collectionsFates= {
                 { fateName="粉红鹳", npcName="夜之民导师" },
                 { fateName="缅楠的巡逻之补充弓箭", npcName="散弓音 缅楠" },
-                { fateName="传说诞生", npcName="法诺的看守人" }
+                { fateName="传说诞生", npcName="法诺的看守" }
             },
             otherNpcFates= {
-                { fateName="吉梅与萨梅", npcName="血红枪 吉梅" },
                 { fateName="死相陆鸟——刻莱诺", npcName="法诺的猎人" },
+                { fateName="吉梅与萨梅", npcName="血红枪 吉梅" },
             },
             fatesWithContinuations = {},
             blacklistedFates= {}
@@ -636,8 +915,8 @@ FatesData = {
             },
             otherNpcFates= {
                 { fateName="灾厄的古塔尼亚之开始追踪", npcName="提乌嘶·澳恩" },
+                { fateName="灾厄的古塔尼亚之兹姆嘶登场", npcName="提乌嘶·澳恩" },
                 { fateName="灾厄的古塔尼亚之保护提乌嘶", npcName="提乌嘶·澳恩" },
-                { fateName="灾厄的古塔尼亚之护卫提乌嘶", npcName="提乌嘶·澳恩" },
             },
             fatesWithContinuations = {},
             specialFates = {
@@ -657,7 +936,9 @@ FatesData = {
                 { fateName="迷津风玫瑰", npcName="束手无策的研究员" },
                 { fateName="纯天然保湿护肤品", npcName="皮肤很好的研究员" }
             },
-            otherNpcFates= {},
+            otherNpcFates= {
+                { fateName="牧羊人的日常", npcName="种畜研究所的驯兽人" } --24 タワーディフェンス
+            },
             fatesWithContinuations = {},
             blacklistedFates= {}
         }
@@ -669,11 +950,14 @@ FatesData = {
             collectionsFates= {
                 { fateName="芳香的炼金术士：危险的芬芳", npcName="调香师 萨加巴缇" }
             },
-            otherNpcFates= {},
+            otherNpcFates= {
+               { fateName="猴子军团", npcName="采草药的女孩" },
+               { fateName="少年与海", npcName="渔夫的儿子" } --24 防御
+            },
+            fatesWithContinuations = {},
             specialFates = {
                 "兽道诸神信仰：伪神降临" -- 兽道神明灯天王（特殊FATE）
             },
-            fatesWithContinuations = {},
             blacklistedFates= {}
         }
     },
@@ -690,7 +974,9 @@ FatesData = {
                 { fateName="魔导技师的归乡之旅：实弹射击", npcName="柯尔特隆纳协漩尉" },
                 { fateName="雪原的巨魔", npcName="幸存的难民" }
             },
-            fatesWithContinuations = {},
+            fatesWithContinuations = {
+                { fateName="魔导技师的归乡之旅：指挥机梅塔特隆", continuationIsBoss=true }
+            },
             blacklistedFates= {}
         }
     },
@@ -704,6 +990,7 @@ FatesData = {
             otherNpcFates= {
                 { fateName="叹息的白兔之轰隆隆大爆炸", npcName="战兵威" },
                 { fateName="叹息的白兔之乱糟糟大失控", npcName="落名威" },
+				{ fateName="叹息的白兔之怒冲冲大处理", npcName="落名威" } 																					
             },
             fatesWithContinuations = {},
             blacklistedFates= {
@@ -723,10 +1010,10 @@ FatesData = {
                 { fateName="侵略兵器召回指令：保护N-6205", npcName="N-6205"},
                 { fateName="走向永恒的结局", npcName="米克·涅尔" }
             },
+            fatesWithContinuations = {},									
             specialFates = {
                 "侵略兵器召回指令：破坏侵略兵器希" -- 希（特殊FATE） 
             },
-            fatesWithContinuations = {},
             blacklistedFates= {}
         }
     },
@@ -742,7 +1029,10 @@ FatesData = {
                 { fateName="创造计划：伊娥观察任务", npcName="神秘莫测 莫勒图斯" },
                 { fateName="告死鸟", npcName="一角兽的观察者" },
             },
-            fatesWithContinuations = {},
+            fatesWithContinuations = {
+                { fateName="创造计划：过于新颖的理念", continuationIsBoss=true },
+                { fateName="创造计划：伊娥观察任务", continuationIsBoss=true }
+            },
             blacklistedFates= {}
         }
     },
@@ -759,7 +1049,7 @@ FatesData = {
                 { fateName="咖啡豆岌岌可危", npcName="咖啡农园的工作人员" }, --24 防御
                 { fateName="千年孤独", npcName="其瓦固佩刀者" }, --23 一般
                 { fateName="飞天魔厨——佩鲁的天敌", npcName="佩鲁佩鲁的旅行商人" }, --22 boss
-                { fateName="狼之家族", npcName="佩鲁佩鲁的旅行商人" }  --23 一般
+                { fateName="狼之家族", npcName="佩鲁佩鲁族旅行商人" }  --23 一般
             },
             fatesWithContinuations = {
                 { fateName="不死之人", continuationIsBoss=true },
@@ -768,7 +1058,9 @@ FatesData = {
             blacklistedFates= {
                 "只有爆炸", -- 不知道为什么过不去
                 "狼之家族", -- 由于同一地点有多个同名NPC存在
-                "飞天魔厨——佩鲁的天敌" -- 由于同一地点有多个同名NPC存在
+                "飞天魔厨——佩鲁的天敌", -- 由于同一地点有多个同名NPC存在
+                "跃动的火热——山火", -- 会抽搐
+                -- "黑水" -- 魔界花恐怖如斯			
             }
         }
     },
@@ -778,7 +1070,8 @@ FatesData = {
         fatesList={
             collectionsFates={
                 { fateName="密林淘金", npcName="莫布林族采集者" },
-				{ fateName="贡品小偷", npcName="哈努族巫女" },															  
+                { fateName="巧若天工", npcName="哈努族手艺人" },
+                
                 
             },
             otherNpcFates= {
@@ -805,17 +1098,20 @@ FatesData = {
                 { fateName="逃离恐怖菇", npcName="霍比格族采集者" }
             },
             otherNpcFates= {
-                --{ fateName=, npcName="灵豹之民猎人" }, 2 npcs names same thing....
-                { fateName="血染利爪——米尤鲁尔", npcName="灵豹之民猎人" },
-                { fateName="致命螳螂", npcName="灵豹之民猎人" },
-                { fateName="守护秘药之战", npcName="霍比格族运货人" }
-                -- { fateName="逃离恐怖菇", npcName="霍比格族采集者" }, -- 2 npcs named same thing.....
+                { fateName="顶击大貒猪", npcName="灵豹之民猎人" }, --23 一般
+                { fateName="血染利爪——米尤鲁尔", npcName="灵豹之民猎人" }, --22 boss
+                { fateName="致命螳螂", npcName="灵豹之民猎人" }, --23 一般
+                { fateName="辉鳞族不法之徒袭击事件", npcName="朵普罗族枪手" }, --23 一般
+                { fateName="守护秘药之战", npcName="霍比格族运货人" }  --24 防御
             },
             fatesWithContinuations = {
-                "辉鳞族不法之徒袭击事件"
+                { fateName="顶击大貒猪", continuationIsBoss=false },
+                { fateName="辉鳞族不法之徒袭击事件", continuationIsBoss=true }
             },
             blacklistedFates= {
-                "圣树邪魔——坏死花"
+                "顶击大貒猪", -- 由于同一地点有多个同名NPC存在
+                "血染利爪——米尤鲁尔", -- 由于同一地点有多个同名NPC存在
+                "致命螳螂" -- 由于同一地点有多个同名NPC存在
             }
         }
     },
@@ -825,14 +1121,14 @@ FatesData = {
         fatesList= {
             collectionsFates= {
                 { fateName="剃毛时间", npcName="迎曦之民采集者" },
-                { fateName="蛇王得酷热涅：狩猎的杀手锏", npcName="蛇王得酷热涅" }
+                { fateName="蛇王得酷热涅：狩猎前的准备", npcName="夕阳尚红 布鲁克·瓦" }
             },
             otherNpcFates= {
                 { fateName="死而复生的恶棍——阴魂不散 扎特夸", npcName="迎曦之民劳动者" }, --22 boss
                 { fateName="不甘的冲锋者——灰达奇", npcName="崇灵之民男性" }, --22 boss
                 { fateName="和牛一起旅行", npcName="崇灵之民女性" }, --23 一般
                 { fateName="大湖之恋", npcName="崇灵之民渔夫" }, --24 防御
-                { fateName="神秘翼龙荒野奇谈", npcName="佩鲁佩鲁族的旅行商人" }  --23 一般
+                { fateName="神秘翼龙荒野奇谈", npcName="佩鲁佩鲁族旅行商人" }  --23 一般
             },
             fatesWithContinuations = {
                 { fateName="蛇王得酷热涅：狩猎的杀手锏", continuationIsBoss=false }
